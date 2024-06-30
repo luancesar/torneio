@@ -1,7 +1,10 @@
 package main
 
 import (
+	"log"
+	"net/http"
 	"torneio/database"
+	"torneio/pkg/router"
 
 	"github.com/joho/godotenv"
 )
@@ -9,6 +12,9 @@ import (
 func main() {
 	_ = godotenv.Load()
 	database.InitDB()
-	// tourney.NewTourney("Torneio de Futebol")
-	// tourney.CreateTolken(1, "token1")
+
+	r := router.NewRouter()
+
+	// Iniciar o servidor
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
